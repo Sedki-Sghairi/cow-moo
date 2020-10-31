@@ -1,6 +1,7 @@
-const express = require('express')
-const cowsay = require('cowsay')
-const cors = require('cors')
+import express from 'express'
+import cowsay from 'cowsay'
+import cors from 'cors'
+import path from 'path'
 
 const app = express()
 // Serve our api route /cow that returns a custom talking text cow
@@ -22,7 +23,14 @@ app.get('/api/cow/', cors(), async (req, res, next) => {
     next(err)
   }
 })
-// Choose the port and start the server
+//serve static files from frontend app
+app.use(express.static(path.join(__dirname,'client/build')))
+//anything that doesnt match the above, send back index.html
+app.get('*',(req,res) => {
+  res.sendFile(path.join(__dirname + 'client/build/index.html'))
+})
+
+
 const PORT = process.env.PORT || 5000
 app.listen(PORT, () => {
   console.log(`Mixing it up on port ${PORT}`)
