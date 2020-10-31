@@ -1,7 +1,7 @@
 const express = require('express')
 const cowsay = require('cowsay')
 const cors = require('cors')
-
+const path = require('path')
 const app = express()
 // Serve our api route /cow that returns a custom talking text cow
 app.get('/api/cow/:say', cors(), async (req, res, next) => {
