@@ -1,7 +1,6 @@
-import express from 'express'
-import cowsay from 'cowsay'
-import cors from 'cors'
-import path from 'path'
+const express = require('express')
+const cowsay = require('cowsay')
+const cors = require('cors')
 
 const app = express()
 // Serve our api route /cow that returns a custom talking text cow
@@ -30,7 +29,7 @@ app.get('*',(req,res) => {
   res.sendFile(path.join(__dirname + 'client/build/index.html'))
 })
 
-
+// Choose the port and start the server
 const PORT = process.env.PORT || 5000
 app.listen(PORT, () => {
   console.log(`Mixing it up on port ${PORT}`)
